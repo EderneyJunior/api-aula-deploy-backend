@@ -1,12 +1,16 @@
 require('dotenv').config()
 const express = require('express')
+const cors = require('cors')
+const knex = require('./conexao')
 
 const app = express()
 
+app.use(cors())
 app.use(express.json())
 
 app.get('/', async (req, res) => {
-    return res.json('API esta ok')
+    const carros = await knex(process.env.BD_NAME)
+    return res.json(carros)
 })
 
 const port = process.env.PORT || 3000
