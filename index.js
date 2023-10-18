@@ -9,7 +9,7 @@ app.use(cors())
 app.use(express.json())
 
 app.get('/', async (req, res) => {
-    const carros = await knex(process.env.BD_NAME)
+    const carros = await knex('carros')
     return res.json(carros)
 })
 
